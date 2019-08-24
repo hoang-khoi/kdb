@@ -9,6 +9,6 @@
  */
 
 struct entry *string_entry_new(const char *key, const char *value);
-void string_entry_free(struct entry *e);
+void string_entry_free(void *e);
 
 #endif
