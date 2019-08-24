@@ -10,5 +10,9 @@
 
 struct entry *string_entry_new(const char *key, const char *value);
 void string_entry_free(void *e);
+/*
+ * Returns 1 if key equals to buffer, 0 otherwise.
+ */
+int string_entry_key_equals(const struct entry *e, const char *buffer);
 
 #endif

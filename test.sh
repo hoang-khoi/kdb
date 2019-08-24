@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-MODULES=(string entry list hash string_entry)
+MODULES=(string entry list hash string_entry list_string_entry)
 
 function test_module() {
 	cc -g $1/$1_test.c -o /tmp/kdb_test &&\
