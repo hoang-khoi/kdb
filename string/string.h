@@ -18,4 +18,9 @@ char *string_get_buffer(const struct string *str);
  */
 unsigned long string_length(const struct string *str);
 
+/*
+ * Returns 1 if strings are equal to each other, 0 otherwise.
+ */
+int string_equals(const struct string *s, const char *buffer);
+
 #endif

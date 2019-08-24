@@ -30,3 +30,8 @@ unsigned long string_length(const struct string *str)
 {
 	return str->length;
 }
+
+int string_equals(const struct string *s, const char *buffer)
+{
+	return 0 == strcmp(buffer, s->buffer);
+}
