@@ -11,10 +11,13 @@
 void list_string_entry_free(struct list *l);
 void list_string_entry_add(struct list *l, const char *key, const char *value);
 /*
- * Given a key, search through the list and returns the associated value.
+ * Given a key, searches and returns the entry that matches the provided key.
  * Returns NULL if not found.
  */
-struct string *list_string_entry_get_value(const struct list *l, const char *key);
+struct entry *list_string_entry_find(const struct list *l, const char *key);
+/*
+ * Deletes an entry from the list given its key.
+ */
 void list_string_entry_del(struct list *l, const char *key);
 
 #endif
