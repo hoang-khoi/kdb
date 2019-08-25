@@ -9,8 +9,8 @@ int main()
 {
 	struct entry *e = string_entry_new("Name", "Khoi");
 
-	assert(0 == strcmp("Name", string_get_buffer(entry_get_key(e))));
-	assert(0 == strcmp("Khoi", string_get_buffer(entry_get_value(e))));
+	assert(string_equals(entry_get_key(e), "Name"));
+	assert(string_equals(entry_get_value(e), "Khoi"));
 
 	// Test string_entry_key_equals()
 	assert(string_entry_key_equals(e, "Name"));
