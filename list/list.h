@@ -44,7 +44,7 @@ struct node *list_begin(const struct list *l);
 struct node *list_next(const struct node* n);
 
 /*
- * Returns iterator's value.
+ * Given the list's iterator, returns its value.
  */
 void *list_iterator_value(const struct node *n);
 

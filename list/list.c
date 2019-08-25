@@ -78,7 +78,7 @@ struct node *list_next(const struct node* n)
 
 void *list_iterator_value(const struct node *n)
 {
-	return n->data;
+	return n->next->data;
 }
 
 /* NODE  IMPLEMENTATION */
