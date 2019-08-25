@@ -9,19 +9,30 @@
 int main()
 {
 	struct list *l = list_new();
-	struct entry *name;
+	struct entry *tmp_entry;
 
 	list_string_entry_add(l, "Name", "Khoi");
 	list_string_entry_add(l, "Age", "24");
 	list_string_entry_add(l, "Title", "Memelord");
 
+	// Expect to found entry with key: Name
+	tmp_entry = list_string_entry_find(l, "Name");
+	assert(string_entry_key_equals(tmp_entry, "Name"));
 
-	name = list_string_entry_find(l, "Name");
-	assert(string_entry_key_equals(name, "Name"));
+	// Do not expect to found entry with key: Name
+	tmp_entry = list_string_entry_find(l, "age");
+	assert(!tmp_entry);
 
-	name = list_string_entry_find(l, "age");
-	assert(!name);
+	// Deletes an existing entry
+	list_string_entry_del(l, "Name");
+	tmp_entry = list_string_entry_find(l, "Name");
+	assert(!tmp_entry);
 
+	// Attempt to delete an entry that does not exist
+	list_string_entry_del(l, "age");
+
+	// Check the size
+	assert(2 == list_size(l));
 
 	list_string_entry_free(l);
 }
