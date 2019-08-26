@@ -10,6 +10,8 @@
  */
 struct fhtable {
 	unsigned long (*hash)(const char*);
+
+	unsigned long limit;
 	unsigned long capacity;
 
 	unsigned long size;

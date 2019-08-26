@@ -20,7 +20,9 @@ int main()
 	struct fhtable *ht = fhtable_new(0.75, hash);
 
 	// Test initial data
-	assert(6 == ht->capacity);
+	assert(hash == ht->hash);
+	assert(6 == ht->limit);
+	assert(8 == ht->capacity);
 	assert(0 == ht->size);
 
 	fhtable_free(ht);
