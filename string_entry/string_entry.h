@@ -10,7 +10,7 @@
 
 struct entry *string_entry_new(const char *key,
 			       const char *value,
-			       unsigned long hash);
+			       unsigned long (*hash_func)(const char*));
 void string_entry_free(void *e);
 /*
  * Returns 1 if key equals to buffer, 0 otherwise.

@@ -6,14 +6,19 @@
 
 #include <assert.h>
 
+unsigned long hash(const char *s)
+{
+	return 64;
+}
+
 int main()
 {
 	struct list *l = list_new();
 	struct entry *tmp_entry;
 
-	list_string_entry_add(l, "Name", "Khoi", 32);
-	list_string_entry_add(l, "Age", "24", 64);
-	list_string_entry_add(l, "Title", "Memelord", 128);
+	list_string_entry_add(l, "Name", "Khoi", hash);
+	list_string_entry_add(l, "Age", "24", hash);
+	list_string_entry_add(l, "Title", "Memelord", hash);
 
 	// Expect to found entry with key: Name
 	tmp_entry = list_string_entry_find(l, "Name");

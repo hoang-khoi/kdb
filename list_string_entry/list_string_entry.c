@@ -20,9 +20,9 @@ void list_string_entry_free(struct list *l)
 void list_string_entry_add(struct list *l,
 			   const char *key,
 			   const char *value,
-			   unsigned long hash)
+			   unsigned long (*hash_func)(const char*))
 {
-	list_add(l, string_entry_new(key, value, hash));
+	list_add(l, string_entry_new(key, value, hash_func));
 }
 
 struct entry *list_string_entry_find(const struct list *l, const char *key)

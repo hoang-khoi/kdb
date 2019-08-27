@@ -2,9 +2,9 @@
 
 struct entry *string_entry_new(const char *key,
 			       const char *value,
-			       unsigned long hash)
+			       unsigned long (*hash_func)(const char*))
 {
-	return entry_new(string_new(key), string_new(value), hash);
+	return entry_new(string_new(key), string_new(value), hash_func(key));
 }
 
 void string_entry_free(void *e)
