@@ -3,8 +3,6 @@
 
 #include "../list_string_entry/list_string_entry.h"
 
-#define FHTABLE_INIT_CAPACITY 8
-
 /**
  * Simple hash table that could not expand itself.
  */
@@ -18,7 +16,8 @@ struct fhtable {
 	struct list **chains;
 };
 
-struct fhtable *fhtable_new(double load_ratio,
+struct fhtable *fhtable_new(unsigned long capacity,
+			    double load_ratio,
 			    unsigned long (*hash)(const char*));
 void fhtable_free(struct fhtable *ht);
 

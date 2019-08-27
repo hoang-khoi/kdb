@@ -1,13 +1,14 @@
 #include "fhtable.h"
 #include <stdlib.h>
 
-struct fhtable *fhtable_new(double load_ratio,
+struct fhtable *fhtable_new(unsigned long capacity,
+			    double load_ratio,
 			    unsigned long (*hash)(const char*))
 {
 	struct fhtable *ht = malloc(sizeof(struct fhtable));
 
 	ht->hash = hash;
-	ht->capacity = FHTABLE_INIT_CAPACITY;
+	ht->capacity = capacity;
 	ht->limit = load_ratio * ht->capacity;
 	ht->size = 0;
 

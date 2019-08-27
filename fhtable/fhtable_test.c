@@ -17,7 +17,7 @@ unsigned long hash(const char *str)
 
 int main()
 {
-	struct fhtable *ht = fhtable_new(0.75, hash);
+	struct fhtable *ht = fhtable_new(8, 0.75, hash);
 
 	// Test initial data
 	assert(hash == ht->hash);
