@@ -38,7 +38,9 @@ int string_equals(const struct string *s, const char *buffer)
 	return 0 == strcmp(buffer, s->buffer);
 }
 
-void string_dump(const struct string *s)
+void string_dump(const struct string *s, int level)
 {
+	for (int i = 0; i < level; ++i)
+		putchar('\t');
 	printf("String: {Length: %lu, Content: %s}\n", s->length, s->buffer);
 }

@@ -12,7 +12,7 @@ int main()
 	// Test string_equals
 	assert(string_equals(s, "HoangKhoi"));
 
-	string_dump(s);
+	string_dump(s, 0);
 
 	string_free(s);
 }
