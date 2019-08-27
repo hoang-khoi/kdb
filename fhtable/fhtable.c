@@ -3,11 +3,11 @@
 
 struct fhtable *fhtable_new(unsigned long capacity,
 			    double load_ratio,
-			    unsigned long (*hash)(const char*))
+			    unsigned long (*hash_func)(const char*))
 {
 	struct fhtable *ht = malloc(sizeof(struct fhtable));
 
-	ht->hash = hash;
+	ht->hash_func = hash_func;
 	ht->capacity = capacity;
 	ht->limit = load_ratio * ht->capacity;
 	ht->size = 0;
@@ -29,4 +29,20 @@ void fhtable_free(struct fhtable *ht)
 
 	free(ht->chains);
 	free(ht);
+}
+
+char fhtable_add(struct fhtable * ht,
+		 const char *key,
+		 const char *value)
+{
+	if (ht->size >= ht->limit)
+		return 0;
+
+	struct entry *e = string_entry_new(key, value, ht->hash_func);
+	unsigned long chain_idx = entry_get_hash(e) % ht->capacity;
+
+	list_add(ht->chains[chain_idx], e);
+
+	++ht->size;
+	return 1;
 }
