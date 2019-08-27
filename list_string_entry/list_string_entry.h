@@ -19,4 +19,9 @@ struct entry *list_string_entry_find(const struct list *l, const char *key);
  */
 void list_string_entry_del(struct list *l, const char *key);
 
+/*
+ * Dumps a list of string entries to stdout for debugging.
+ */
+void list_string_entry_dump(const struct list *l, int level);
+
 #endif
