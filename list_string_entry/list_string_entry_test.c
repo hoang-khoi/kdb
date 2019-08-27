@@ -16,9 +16,9 @@ int main()
 	struct list *l = list_new();
 	struct entry *tmp_entry;
 
-	list_string_entry_add(l, "Name", "Khoi", hash);
-	list_string_entry_add(l, "Age", "24", hash);
-	list_string_entry_add(l, "Title", "Memelord", hash);
+	list_add(l, string_entry_new("Name", "Khoi", hash));
+	list_add(l, string_entry_new("Age", "24", hash));
+	list_add(l, string_entry_new("Title", "Memelord", hash));
 
 	// Expect to found entry with key: Name
 	tmp_entry = list_string_entry_find(l, "Name");
