@@ -17,9 +17,12 @@ void list_string_entry_free(struct list *l)
 	list_free(l, string_entry_free);
 }
 
-void list_string_entry_add(struct list *l, const char *key, const char *value)
+void list_string_entry_add(struct list *l,
+			   const char *key,
+			   const char *value,
+			   unsigned long hash)
 {
-	list_add(l, string_entry_new(key, value));
+	list_add(l, string_entry_new(key, value, hash));
 }
 
 struct entry *list_string_entry_find(const struct list *l, const char *key)

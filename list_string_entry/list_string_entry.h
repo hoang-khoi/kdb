@@ -9,7 +9,10 @@
  */
 
 void list_string_entry_free(struct list *l);
-void list_string_entry_add(struct list *l, const char *key, const char *value);
+void list_string_entry_add(struct list *l,
+			   const char *key,
+			   const char *value,
+			   unsigned long hash);
 /*
  * Given a key, searches and returns the entry that matches the provided key.
  * Returns NULL if not found.

@@ -8,7 +8,9 @@
  * Specific APIs for string key-value entries.
  */
 
-struct entry *string_entry_new(const char *key, const char *value);
+struct entry *string_entry_new(const char *key,
+			       const char *value,
+			       unsigned long hash);
 void string_entry_free(void *e);
 /*
  * Returns 1 if key equals to buffer, 0 otherwise.

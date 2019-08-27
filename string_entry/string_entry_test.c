@@ -7,7 +7,7 @@
 
 int main()
 {
-	struct entry *e = string_entry_new("Name", "Khoi");
+	struct entry *e = string_entry_new("Name", "Khoi", 32);
 
 	assert(string_equals(entry_get_key(e), "Name"));
 	assert(string_equals(entry_get_value(e), "Khoi"));

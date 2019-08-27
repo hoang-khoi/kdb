@@ -1,8 +1,10 @@
 #include "string_entry.h"
 
-struct entry *string_entry_new(const char *key, const char *value)
+struct entry *string_entry_new(const char *key,
+			       const char *value,
+			       unsigned long hash)
 {
-	return entry_new(string_new(key), string_new(value));
+	return entry_new(string_new(key), string_new(value), hash);
 }
 
 void string_entry_free(void *e)
