@@ -21,7 +21,7 @@ int main()
 	assert(string_entry_key_equals(e, "Name"));
 	assert(16 == entry_get_hash(e));
 
-	string_entry_dump(e);
+	string_entry_dump(e, 0);
 
 	string_entry_free(e);
 }

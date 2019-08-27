@@ -20,6 +20,6 @@ int string_entry_key_equals(const struct entry *e, const char *buffer);
 /*
  * Dumps string entry to stdout for debugging.
  */
-void string_entry_dump(const struct entry *e);
+void string_entry_dump(const struct entry *e, int level);
 
 #endif

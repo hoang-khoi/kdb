@@ -1,6 +1,13 @@
 #include "string_entry.h"
 #include <stdio.h>
 
+/*
+ * Use for dumping.
+ */
+static void indent(int level);
+
+/******************************************************************************/
+
 struct entry *string_entry_new(const char *key,
 			       const char *value,
 			       unsigned long (*hash_func)(const char*))
@@ -18,17 +25,28 @@ int string_entry_key_equals(const struct entry *e, const char *buffer)
 	return string_equals(entry_get_key(e), buffer);
 }
 
-void string_entry_dump(const struct entry *e)
+void string_entry_dump(const struct entry *e, int level)
 {
+	indent(level);
 	printf("Entry: {\n");
 
-	printf("\tKey: ");
-	string_dump(e->key);
+	indent(level + 1);
+	printf("Key: ");
+	string_dump(e->key, 0);
 
-	printf("\tValue: ");
-	string_dump(e->value);
+	indent(level + 1);
+	printf("Value: ");
+	string_dump(e->value, 0);
 
-	printf("\tHash: %lu\n", e->hash);
+	indent(level + 1);
+	printf("Hash: %lu\n", e->hash);
 
+	indent(level);
 	printf("}\n");
+}
+
+static void indent(int level)
+{
+	for (int i = 0; i < level; ++i)
+		putchar('\t');
 }
