@@ -1,4 +1,6 @@
 #include "string.c"
+#include "../formatter/formatter.c"
+
 #include <assert.h>
 
 int main()

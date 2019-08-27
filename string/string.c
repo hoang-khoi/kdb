@@ -1,4 +1,5 @@
 #include "string.h"
+#include "../formatter/formatter.h"
 
 #include <string.h>
 #include <stdlib.h>
@@ -40,7 +41,6 @@ int string_equals(const struct string *s, const char *buffer)
 
 void string_dump(const struct string *s, int level)
 {
-	for (int i = 0; i < level; ++i)
-		putchar('\t');
+	formatter_indent(level);
 	printf("String: {Length: %lu, Content: %s}\n", s->length, s->buffer);
 }
