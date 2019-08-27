@@ -1,6 +1,8 @@
 #include "string.h"
+
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 struct string *string_new(const char *buffer)
 {
@@ -34,4 +36,9 @@ unsigned long string_length(const struct string *str)
 int string_equals(const struct string *s, const char *buffer)
 {
 	return 0 == strcmp(buffer, s->buffer);
+}
+
+void string_dump(const struct string *s)
+{
+	printf("String: {Length: %lu, Content: %s}\n", s->length, s->buffer);
 }

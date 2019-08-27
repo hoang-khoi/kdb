@@ -23,4 +23,9 @@ unsigned long string_length(const struct string *str);
  */
 int string_equals(const struct string *s, const char *buffer);
 
+/*
+ * Dumps string to stdout for debugging.
+ */
+void string_dump(const struct string *s);
+
 #endif
