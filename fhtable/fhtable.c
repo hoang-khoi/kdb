@@ -34,7 +34,7 @@ void fhtable_free(struct fhtable *ht)
 	free(ht);
 }
 
-char fhtable_add(struct fhtable * ht,
+char fhtable_add(struct fhtable *ht,
 		 const char *key,
 		 const char *value)
 {
@@ -48,6 +48,17 @@ char fhtable_add(struct fhtable * ht,
 
 	++ht->size;
 	return 1;
+}
+
+struct string *fhtable_get(const struct fhtable *ht, const char *key)
+{
+	unsigned long chain_idx = ht->hash_func(key) % ht->capacity;
+	struct entry *e = list_string_entry_find(ht->chains[chain_idx], key);
+
+	if (!e)
+		return NULL;
+
+	return entry_get_value(e);
 }
 
 char fhtable_dump(const struct fhtable *ht, int level)

@@ -44,6 +44,15 @@ int main()
 
 	}
 
+	// Trying to get values
+	for (int i = 0; i < 6; ++i) {
+		struct string *value_string = fhtable_get(ht, keys[i]);
+		assert(string_equals(value_string, values[i]));
+	}
+
+	// Trying to get a key that does not exist
+	assert(!fhtable_get(ht, "Denied"));
+
 	fhtable_dump(ht, 0);
 
 	fhtable_free(ht);
