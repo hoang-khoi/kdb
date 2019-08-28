@@ -31,10 +31,10 @@ int main()
 	char *values[6] = {"Hoang", "Khoi", "Dep", "Trai", "Vai", "Chuong"};
 
 	for (int i = 0; i < 6; ++i)
-		assert(fhtable_add(ht, keys[i], values[i]));
+		assert(fhtable_set(ht, keys[i], values[i]));
 
 	// Limit reached, should not accept any record
-	assert(!fhtable_add(ht, "Denied", "How sad"));
+	assert(!fhtable_set(ht, "Denied", "How sad"));
 
 	// Check entries location
 	for (int i = 0; i < 6; ++i) {

@@ -34,7 +34,7 @@ void fhtable_free(struct fhtable *ht)
 	free(ht);
 }
 
-char fhtable_add(struct fhtable *ht,
+char fhtable_set(struct fhtable *ht,
 		 const char *key,
 		 const char *value)
 {

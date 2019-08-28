@@ -25,7 +25,7 @@ void fhtable_free(struct fhtable *ht);
  * Add new entry to the hash table. Return 1 if success, 0 if the table is
  * already full.
  */
-char fhtable_add(struct fhtable *ht,
+char fhtable_set(struct fhtable *ht,
 		 const char *key,
 		 const char *value);
 /*
