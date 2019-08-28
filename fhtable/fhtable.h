@@ -29,4 +29,9 @@ char fhtable_add(struct fhtable * ht,
 		 const char *key,
 		 const char *value);
 
+/*
+ * Dumps the hash table to stdout for debugging purpose.
+ */
+char fhtable_dump(const struct fhtable *ht, int level);
+
 #endif

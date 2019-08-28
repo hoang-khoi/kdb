@@ -4,6 +4,7 @@
 #include "../entry/entry.c"
 #include "../string_entry/string_entry.c"
 #include "../list_string_entry/list_string_entry.c"
+#include "../formatter/formatter.c"
 
 #include <assert.h>
 
@@ -42,6 +43,8 @@ int main()
 		assert(string_entry_key_equals(e, keys[i]));
 
 	}
+
+	fhtable_dump(ht, 0);
 
 	fhtable_free(ht);
 }

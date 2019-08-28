@@ -1,5 +1,8 @@
 #include "fhtable.h"
+#include "../formatter/formatter.h"
+
 #include <stdlib.h>
+#include <stdio.h>
 
 struct fhtable *fhtable_new(unsigned long capacity,
 			    double load_ratio,
@@ -45,4 +48,36 @@ char fhtable_add(struct fhtable * ht,
 
 	++ht->size;
 	return 1;
+}
+
+char fhtable_dump(const struct fhtable *ht, int level)
+{
+	formatter_indent(level);
+	printf("Fixed Hash Table: {\n");
+
+	formatter_indent(level + 1);
+	printf("Limit: %lu\n", ht->limit);
+
+	formatter_indent(level + 1);
+	printf("Capacity: %lu\n", ht->capacity);
+
+	formatter_indent(level + 1);
+	printf("Size: %lu\n", ht->size);
+
+	formatter_indent(level + 1);
+	printf("Chains: {\n");
+
+	for (unsigned long i = 0; i < ht->capacity; ++i) {
+		formatter_indent(level + 2);
+		printf("Index: %lu\n", i);
+
+		list_string_entry_dump(ht->chains[i], level +  2);
+	}
+
+	formatter_indent(level + 1);
+	printf("}\n");
+	
+
+	formatter_indent(level);
+	printf("}\n");
 }
