@@ -26,6 +26,9 @@ int main()
 	assert(8 == ht->capacity);
 	assert(0 == ht->size);
 
+	// Testing public capacity getter
+	assert(8 == fhtable_capacity(ht));
+
 	// Trying to add some entries
 	char *keys[6] = {"0", "1", "2", "3", "4", "5"};
 	char *values[6] = {"Hoang", "Khoi", "Dep", "Trai", "Vai", "Chuong"};

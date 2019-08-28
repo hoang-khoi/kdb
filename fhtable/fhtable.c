@@ -61,6 +61,12 @@ struct string *fhtable_get(const struct fhtable *ht, const char *key)
 	return entry_get_value(e);
 }
 
+
+unsigned long fhtable_capacity(const struct fhtable *ht)
+{
+	return ht->capacity;
+}
+
 char fhtable_dump(const struct fhtable *ht, int level)
 {
 	formatter_indent(level);
@@ -87,7 +93,6 @@ char fhtable_dump(const struct fhtable *ht, int level)
 
 	formatter_indent(level + 1);
 	printf("}\n");
-	
 
 	formatter_indent(level);
 	printf("}\n");
