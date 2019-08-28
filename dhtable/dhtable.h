@@ -5,6 +5,7 @@
 
 struct dhtable {
 	unsigned long (*hash_func)(const char*);
+	double load_factor;
 
 	unsigned long size;
 	struct fhtable *primary;

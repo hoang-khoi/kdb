@@ -7,6 +7,8 @@
 #include "../formatter/formatter.c"
 #include "../string/string.c"
 
+#include <assert.h>
+
 /*
  * Mock hash function for a string. Returns the value of first character.
  */
@@ -18,5 +20,13 @@ unsigned long hash(const char *str)
 int main()
 {
 	struct dhtable *ht = dhtable_new(4, 0.75, hash);
+
+	// Test internal data
+	assert(hash == ht->hash_func);
+	assert(0.75 == ht->load_factor);
+	assert(0 == ht->size);
+	assert(ht->primary);
+	assert(!ht->secondary);
+
 	dhtable_free(ht);
 }

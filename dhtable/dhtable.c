@@ -7,6 +7,7 @@ struct dhtable *dhtable_new(unsigned long capacity,
 {
 	struct dhtable *ht = malloc(sizeof(struct dhtable));
 	ht->hash_func = hash_func;
+	ht->load_factor = load_factor;
 	ht->size = 0;
 	ht->primary = fhtable_new(capacity, load_factor, hash_func);
 	ht->secondary = NULL;
