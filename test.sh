@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-modules="string entry list hash string_entry list_string_entry fhtable"
+modules="string entry list hash string_entry list_string_entry fhtable dhtable"
 
 function test_module() {
 	cc -g $1/$1_test.c -o /tmp/kdb_test &&\
