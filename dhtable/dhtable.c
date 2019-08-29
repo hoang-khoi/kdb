@@ -8,7 +8,6 @@ struct dhtable *dhtable_new(unsigned long capacity,
 	struct dhtable *ht = malloc(sizeof(struct dhtable));
 	ht->hash_func = hash_func;
 	ht->load_factor = load_factor;
-	ht->size = 0;
 	ht->primary = fhtable_new(capacity, load_factor, hash_func);
 	ht->secondary = NULL;
 
@@ -24,4 +23,14 @@ void dhtable_free(struct dhtable *ht)
 	fhtable_free(ht->secondary);
 
 	free(ht);
+}
+
+unsigned long dhtable_size(const struct dhtable* ht)
+{
+	unsigned long size = fhtable_size(ht->primary);
+
+	if (ht->secondary)
+		size += fhtable_size(ht->secondary);
+
+	return size;
 }

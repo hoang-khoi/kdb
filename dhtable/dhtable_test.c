@@ -24,7 +24,7 @@ int main()
 	// Test internal data
 	assert(hash == ht->hash_func);
 	assert(0.75 == ht->load_factor);
-	assert(0 == ht->size);
+	assert(0 == dhtable_size(ht));
 	assert(ht->primary);
 	assert(!ht->secondary);
 
