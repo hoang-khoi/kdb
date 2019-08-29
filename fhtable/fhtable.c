@@ -4,6 +4,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/* Private APIs */
+
+/*
+ * Reusable code for adding a new entry into a fixed hash table.
+ */
+void fhtable_add_entry(struct fhtable *ht, struct entry *e);
+
+/******************************************************************************/
+
 struct fhtable *fhtable_new(unsigned long capacity,
 			    double load_ratio,
 			    unsigned long (*hash_func)(const char*))
@@ -42,11 +51,7 @@ char fhtable_set(struct fhtable *ht,
 		return 0;
 
 	struct entry *e = string_entry_new(key, value, ht->hash_func);
-	unsigned long chain_idx = entry_get_hash(e) % ht->capacity;
-
-	list_add(ht->chains[chain_idx], e);
-
-	++ht->size;
+	fhtable_add_entry(ht, e);
 	return 1;
 }
 
@@ -101,4 +106,14 @@ char fhtable_dump(const struct fhtable *ht, int level)
 
 	formatter_indent(level);
 	printf("}\n");
+}
+
+/******************************************************************************/
+
+void fhtable_add_entry(struct fhtable *ht, struct entry *e)
+{
+	unsigned long chain_idx = entry_get_hash(e) % ht->capacity;
+	list_add(ht->chains[chain_idx], e);
+
+	++ht->size;
 }
