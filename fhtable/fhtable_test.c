@@ -20,14 +20,9 @@ int main()
 {
 	struct fhtable *ht = fhtable_new(8, 0.75, hash);
 
-	// Test initial data
-	assert(hash == ht->hash_func);
-	assert(6 == ht->limit);
-	assert(8 == ht->capacity);
-	assert(0 == ht->size);
-
-	// Testing public capacity getter
+	// Testing public getters
 	assert(8 == fhtable_capacity(ht));
+	assert(0 == fhtable_size(ht));
 
 	// Trying to add some entries
 	char *keys[6] = {"0", "1", "2", "3", "4", "5"};
@@ -55,6 +50,9 @@ int main()
 
 	// Trying to get a key that does not exist
 	assert(!fhtable_get(ht, "Denied"));
+
+	// Test size after adding some data
+	assert(6 == fhtable_size(ht));
 
 	fhtable_dump(ht, 0);
 

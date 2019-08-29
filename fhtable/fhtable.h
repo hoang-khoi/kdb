@@ -34,6 +34,7 @@ char fhtable_set(struct fhtable *ht,
 struct string *fhtable_get(const struct fhtable *ht, const char *key);
 
 unsigned long fhtable_capacity(const struct fhtable *ht);
+unsigned long fhtable_size(const struct fhtable *ht);
 
 /*
  * Dumps the hash table to stdout for debugging purpose.

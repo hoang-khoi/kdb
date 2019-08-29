@@ -67,6 +67,11 @@ unsigned long fhtable_capacity(const struct fhtable *ht)
 	return ht->capacity;
 }
 
+unsigned long fhtable_size(const struct fhtable *ht)
+{
+	return ht->size;
+}
+
 char fhtable_dump(const struct fhtable *ht, int level)
 {
 	formatter_indent(level);
