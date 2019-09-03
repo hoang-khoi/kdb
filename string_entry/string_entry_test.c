@@ -6,21 +6,23 @@
 #include <assert.h>
 #include <string.h>
 
-unsigned long hash(const char *s)
+unsigned long hash_func(const char *s)
 {
-	return 16;
+	return *s - '0';
 }
 
 int main()
 {
-	struct entry *e = string_entry_new("Name", "Khoi", hash);
+	struct entry *e = string_entry_new("3.Name", "Khoi");
 
-	assert(string_equals(entry_get_key(e), "Name"));
+	assert(string_equals(entry_get_key(e), "3.Name"));
 	assert(string_equals(entry_get_value(e), "Khoi"));
 
 	// Test string_entry_key_equals()
-	assert(string_entry_key_equals(e, "Name"));
-	assert(16 == entry_get_hash(e));
+	assert(string_entry_key_equals(e, "3.Name"));
+
+	// Test string_entry_hash()
+	assert(3 == string_entry_hash(e, hash_func));
 
 	string_entry_dump(e, 0);
 

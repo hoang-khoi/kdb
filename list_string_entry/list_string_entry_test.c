@@ -17,9 +17,9 @@ int main()
 	struct list *l = list_new();
 	struct entry *tmp_entry;
 
-	list_add(l, string_entry_new("Name", "Khoi", hash));
-	list_add(l, string_entry_new("Age", "24", hash));
-	list_add(l, string_entry_new("Title", "Memelord", hash));
+	list_add(l, string_entry_new("Name", "Khoi"));
+	list_add(l, string_entry_new("Age", "24"));
+	list_add(l, string_entry_new("Title", "Memelord"));
 
 	list_string_entry_dump(l, 0);
 

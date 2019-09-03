@@ -3,16 +3,24 @@
 
 #include <assert.h>
 
+unsigned long hash(const char *s)
+{
+	return *s - '0';
+}
+
 int main()
 {
-	struct string *s = string_new("HoangKhoi");
+	struct string *s = string_new("7.HoangKhoi");
 
 	// Test data getters
-	assert(9 == string_length(s));
-	assert(0 == strcmp("HoangKhoi", string_get_buffer(s)));
+	assert(11 == string_length(s));
+	assert(0 == strcmp("7.HoangKhoi", string_get_buffer(s)));
 
-	// Test string_equals
-	assert(string_equals(s, "HoangKhoi"));
+	// Test string_equals()
+	assert(string_equals(s, "7.HoangKhoi"));
+
+	// Test string_hash()
+	assert(7 == string_hash(s, hash));
 
 	string_dump(s, 0);
 

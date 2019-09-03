@@ -3,11 +3,9 @@
 
 #include <stdio.h>
 
-struct entry *string_entry_new(const char *key,
-			       const char *value,
-			       unsigned long (*hash_func)(const char*))
+struct entry *string_entry_new(const char *key, const char *value)
 {
-	return entry_new(string_new(key), string_new(value), hash_func(key));
+	return entry_new(string_new(key), string_new(value));
 }
 
 void string_entry_free(void *e)
@@ -18,6 +16,12 @@ void string_entry_free(void *e)
 int string_entry_key_equals(const struct entry *e, const char *buffer)
 {
 	return string_equals(entry_get_key(e), buffer);
+}
+
+unsigned long string_entry_hash(const struct entry *e,
+				unsigned long (*hash_func)(const char*))
+{
+	return string_hash(entry_get_key(e), hash_func);
 }
 
 void string_entry_dump(const struct entry *e, int level)
@@ -32,9 +36,6 @@ void string_entry_dump(const struct entry *e, int level)
 	formatter_indent(level + 1);
 	printf("Value: ");
 	string_dump(e->value, 0);
-
-	formatter_indent(level + 1);
-	printf("Hash: %lu\n", e->hash);
 
 	formatter_indent(level);
 	printf("}\n");

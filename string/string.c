@@ -39,6 +39,12 @@ int string_equals(const struct string *s, const char *buffer)
 	return 0 == strcmp(buffer, s->buffer);
 }
 
+unsigned long string_hash(const struct string *s,
+			  unsigned long (*hash_func)(const char*))
+{
+	return hash_func(s->buffer);
+}
+
 void string_dump(const struct string *s, int level)
 {
 	formatter_indent(level);

@@ -25,8 +25,15 @@ int main()
 	assert(0 == fhtable_size(ht));
 
 	// Trying to add some entries
-	char *keys[6] = {"0", "1", "2", "3", "4", "5"};
-	char *values[6] = {"Hoang", "Khoi", "Dep", "Trai", "Vai", "Chuong"};
+	char *keys[6] = {"0", "1", "7", "3", "4", "6"};
+	char *values[6] = {
+		"0.Hoang",
+		"1.Khoi",
+		"7.Dep",
+		"3.Trai",
+		"4.Vai",
+		"6.Chuong"
+	};
 
 	for (int i = 0; i < 6; ++i)
 		assert(fhtable_set(ht, keys[i], values[i]));
@@ -36,7 +43,7 @@ int main()
 
 	// Check entries location
 	for (int i = 0; i < 6; ++i) {
-		struct list *chain = ht->chains[i];
+		struct list *chain = ht->chains[*keys[i] - '0'];
 		struct entry *e = list_string_entry_find(chain, keys[i]);
 		assert(string_entry_key_equals(e, keys[i]));
 

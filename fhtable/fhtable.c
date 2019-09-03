@@ -6,10 +6,7 @@
 
 /* Private APIs */
 
-/*
- * Reusable code for adding a new entry into a fixed hash table.
- */
-void fhtable_add_entry(struct fhtable *ht, struct entry *e);
+void _fhtable_add_entry(struct fhtable *ht, struct entry *e);
 
 /******************************************************************************/
 
@@ -50,8 +47,8 @@ char fhtable_set(struct fhtable *ht,
 	if (ht->size >= ht->limit)
 		return 0;
 
-	struct entry *e = string_entry_new(key, value, ht->hash_func);
-	fhtable_add_entry(ht, e);
+	struct entry *e = string_entry_new(key, value);
+	_fhtable_add_entry(ht, e);
 	return 1;
 }
 
@@ -110,9 +107,11 @@ char fhtable_dump(const struct fhtable *ht, int level)
 
 /******************************************************************************/
 
-void fhtable_add_entry(struct fhtable *ht, struct entry *e)
+void _fhtable_add_entry(struct fhtable *ht, struct entry *e)
 {
-	unsigned long chain_idx = entry_get_hash(e) % ht->capacity;
+	unsigned long chain_idx =
+		string_entry_hash(e, ht->hash_func) % ht->capacity;
+
 	list_add(ht->chains[chain_idx], e);
 
 	++ht->size;
