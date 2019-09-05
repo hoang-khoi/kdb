@@ -13,7 +13,7 @@ struct fhtable {
 	unsigned long capacity;
 
 	unsigned long size;
-	struct list **chains;
+	struct list **slots;
 };
 
 struct fhtable *fhtable_new(unsigned long capacity,

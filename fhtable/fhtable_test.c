@@ -43,7 +43,7 @@ int main()
 
 	// Check entries location
 	for (int i = 0; i < 6; ++i) {
-		struct list *chain = ht->chains[*keys[i] - '0'];
+		struct list *chain = ht->slots[*keys[i] - '0'];
 		struct entry *e = list_string_entry_find(chain, keys[i]);
 		assert(string_entry_key_equals(e, keys[i]));
 
