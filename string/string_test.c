@@ -22,7 +22,5 @@ int main()
 	// Test string_hash()
 	assert(7 == string_hash(s, hash));
 
-	string_dump(s, 0);
-
 	string_free(s);
 }

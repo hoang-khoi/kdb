@@ -21,8 +21,6 @@ int main()
 	list_add(l, string_entry_new("Age", "24"));
 	list_add(l, string_entry_new("Title", "Memelord"));
 
-	list_string_entry_dump(l, 0);
-
 	// Expect to found entry with key: Name
 	tmp_entry = list_string_entry_find(l, "Name");
 	assert(string_entry_key_equals(tmp_entry, "Name"));
@@ -41,8 +39,6 @@ int main()
 
 	// Check the size
 	assert(2 == list_size(l));
-
-	list_string_entry_dump(l, 0);
 
 	list_string_entry_free(l);
 }

@@ -24,7 +24,5 @@ int main()
 	// Test string_entry_hash()
 	assert(3 == string_entry_hash(e, hash_func));
 
-	string_entry_dump(e, 0);
-
 	string_entry_free(e);
 }
