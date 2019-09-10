@@ -6,6 +6,9 @@
 
 /* Private APIs */
 
+/*
+ * NOTE: Any new data adding operations MUST be done by this function.
+ */
 void _fhtable_add_entry(struct fhtable *ht, struct entry *e);
 
 /******************************************************************************/
@@ -72,6 +75,25 @@ unsigned long fhtable_capacity(const struct fhtable *ht)
 unsigned long fhtable_size(const struct fhtable *ht)
 {
 	return ht->size;
+}
+
+unsigned long fhtable_move(struct fhtable *dest, struct fhtable *src,
+			   unsigned long slot_idx)
+{
+	unsigned long entries_moved = 0;
+	struct list *slot_to_move = src->slots[slot_idx];
+	struct node *iterator = list_begin(slot_to_move);
+
+	while (list_next(iterator)) {
+		struct entry *e = list_iterator_value(iterator);
+		_fhtable_add_entry(dest, e);
+		list_del(slot_to_move, iterator, NULL);
+		++entries_moved;
+	}
+
+	src->size -= entries_moved;
+
+	return entries_moved;
 }
 
 char fhtable_dump(const struct fhtable *ht, int level)

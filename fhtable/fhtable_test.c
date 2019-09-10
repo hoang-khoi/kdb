@@ -16,7 +16,7 @@ unsigned long hash(const char *str)
 	return *str - '0';
 }
 
-int main()
+void test_general_functionalities()
 {
 	struct fhtable *ht = fhtable_new(8, 0.75, hash);
 
@@ -61,7 +61,45 @@ int main()
 	// Test size after adding some data
 	assert(6 == fhtable_size(ht));
 
-	fhtable_dump(ht, 0);
-
 	fhtable_free(ht);
+}
+
+void test_fhtable_move()
+{
+	struct fhtable *src = fhtable_new(8, 0.75, hash);
+	struct fhtable *dest = fhtable_new(16, 0.75, hash);
+
+	fhtable_set(src, "8. Key 1", "Value 1");
+	fhtable_set(src, "8. Key 2", "Value 2");
+	fhtable_set(src, "9. Key 1", "Value 3");
+	fhtable_set(src, "9. Key 2", "Value 4");
+
+	fhtable_move(dest, src, 0);
+	fhtable_move(dest, src, 1);
+
+	// Assert size after moving
+	assert(0 == fhtable_size(src));
+	assert(4 == fhtable_size(dest));
+
+	// Test the content, nothing found from source
+	assert(!fhtable_get(src, "8. Key 1"));
+	assert(!fhtable_get(src, "8. Key 2"));
+	assert(!fhtable_get(src, "9. Key 1"));
+	assert(!fhtable_get(src, "9. Key 2"));
+
+	// Test the content, migrated records should be found here
+	assert(string_equals(fhtable_get(dest, "8. Key 1"), "Value 1"));
+	assert(string_equals(fhtable_get(dest, "8. Key 2"), "Value 2"));
+	assert(string_equals(fhtable_get(dest, "9. Key 1"), "Value 3"));
+	assert(string_equals(fhtable_get(dest, "9. Key 2"), "Value 4"));
+
+
+	fhtable_free(src);
+	fhtable_free(dest);
+}
+
+int main()
+{
+	test_general_functionalities();
+	test_fhtable_move();
 }

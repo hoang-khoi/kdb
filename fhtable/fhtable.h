@@ -37,6 +37,13 @@ unsigned long fhtable_capacity(const struct fhtable *ht);
 unsigned long fhtable_size(const struct fhtable *ht);
 
 /*
+ * Moves entries of one slot from a hash table to another one.
+ * WARNING: Make sure dest hash table have enough capacity.
+ */
+unsigned long fhtable_move(struct fhtable *dest, struct fhtable *src,
+			   unsigned long slot_idx);
+
+/*
  * Dumps the hash table to stdout for debugging purpose.
  */
 char fhtable_dump(const struct fhtable *ht, int level);
