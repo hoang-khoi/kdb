@@ -48,5 +48,5 @@ unsigned long string_hash(const struct string *s,
 void string_dump(const struct string *s, int level)
 {
 	formatter_indent(level);
-	printf("String: {Length: %lu, Content: %s}\n", s->length, s->buffer);
+	printf("String: {Length: %lu, Content: '%s'}\n", s->length, s->buffer);
 }

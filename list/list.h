@@ -22,6 +22,8 @@ void list_add(struct list *l, void *data);
 /*
  * Deletes a node from the list from its iterator. Deallocates its data if
  * deallocator is provided.
+ * NOTE: The iterator is MOVED forward one node as the specified node has been
+ * removed.
  */
 void list_del(struct list *l, struct node *it, void (*deallocator)(void*));
 /*
