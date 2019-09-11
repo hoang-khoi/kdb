@@ -77,6 +77,11 @@ unsigned long fhtable_size(const struct fhtable *ht)
 	return ht->size;
 }
 
+char fhtable_is_empty(const struct fhtable *ht)
+{
+	return ht->size == 0;
+}
+
 unsigned long fhtable_move(struct fhtable *dest, struct fhtable *src,
 			   unsigned long slot_idx)
 {
@@ -96,8 +101,15 @@ unsigned long fhtable_move(struct fhtable *dest, struct fhtable *src,
 	return entries_moved;
 }
 
-char fhtable_dump(const struct fhtable *ht, int level)
+void fhtable_dump(const struct fhtable *ht, int level)
 {
+	if (!ht) {
+		formatter_indent(level);
+		printf("NULL\n");
+
+		return;
+	}
+
 	formatter_indent(level);
 	printf("Fixed Hash Table: {\n");
 

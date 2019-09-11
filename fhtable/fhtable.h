@@ -35,6 +35,7 @@ struct string *fhtable_get(const struct fhtable *ht, const char *key);
 
 unsigned long fhtable_capacity(const struct fhtable *ht);
 unsigned long fhtable_size(const struct fhtable *ht);
+char fhtable_is_empty(const struct fhtable *ht);
 
 /*
  * Moves entries of one slot from a hash table to another one.
@@ -46,6 +47,6 @@ unsigned long fhtable_move(struct fhtable *dest, struct fhtable *src,
 /*
  * Dumps the hash table to stdout for debugging purpose.
  */
-char fhtable_dump(const struct fhtable *ht, int level);
+void fhtable_dump(const struct fhtable *ht, int level);
 
 #endif
