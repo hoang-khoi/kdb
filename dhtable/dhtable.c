@@ -54,6 +54,18 @@ void dhtable_set(struct dhtable *ht, const char *key, const char *value)
 		_dhtable_set_primary(ht, key, value);
 }
 
+struct string *dhtable_get(struct dhtable *ht, const char *key)
+{
+	struct string *result = fhtable_get(ht->primary, key);
+
+	if (!result && ht->secondary) {
+		result = fhtable_get(ht->secondary, key);
+		_dhtable_migrate(ht);
+	}
+
+	return result;
+}
+
 unsigned long dhtable_size(const struct dhtable* ht)
 {
 	unsigned long size = fhtable_size(ht->primary);

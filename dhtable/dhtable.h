@@ -19,6 +19,7 @@ struct dhtable *dhtable_new(unsigned long capacity,
 void dhtable_free(struct dhtable *ht);
 
 void dhtable_set(struct dhtable *ht, const char *key, const char *value);
+struct string *dhtable_get(struct dhtable *ht, const char *key);
 
 unsigned long dhtable_size(const struct dhtable* ht);
 
