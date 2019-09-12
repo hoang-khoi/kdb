@@ -24,11 +24,6 @@ void string_free(struct string *str)
 	free(str);
 }
 
-char *string_get_buffer(const struct string *str)
-{
-	return str->buffer;
-}
-
 unsigned long string_length(const struct string *str)
 {
 	return str->length;

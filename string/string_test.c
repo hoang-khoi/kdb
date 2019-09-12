@@ -14,7 +14,6 @@ int main()
 
 	// Test data getters
 	assert(11 == string_length(s));
-	assert(0 == strcmp("7.HoangKhoi", string_get_buffer(s)));
 
 	// Test string_equals()
 	assert(string_equals(s, "7.HoangKhoi"));
