@@ -50,4 +50,9 @@ struct node *list_next(const struct node* n);
  */
 void *list_iterator_value(const struct node *n);
 
+/*
+ * Iterates a certain amount of steps, then returns that iterator.
+ */
+struct node *list_iterator_jump(struct node *it, unsigned long step);
+
 #endif

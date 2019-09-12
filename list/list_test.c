@@ -1,17 +1,6 @@
 #include "list.c"
 #include <assert.h>
 
-/*
- * Helper function for quickly moving the list iterator.
- */
-struct node *move_iterator(struct node *it, int steps)
-{
-	for (int i = 0; i < steps; ++i)
-		it = list_next(it);
-
-	return it;
-}
-
 void test_add()
 {
 	struct list *l = list_new();
@@ -40,7 +29,7 @@ void test_add()
 void test_del()
 {
 	struct list *l = list_new();
-	void *data[3];
+	void *data[3], *data_2[3];
 
 	for (int i = 0; i < 3; ++i) {
 		data[i] = malloc(16);
@@ -49,13 +38,12 @@ void test_del()
 
 	// Delete first and last
 	struct node *begin = list_begin(l);
-	struct node *end = move_iterator(begin, 2);
+	struct node *end = list_iterator_jump(begin, 2);
 
 	list_del(l, begin, free);
 	list_del(l, end, free);
 
 	// Add something after deletion
-	void *data_2[3];
 	for (int i = 0; i < 3; ++i) {
 		data_2[i] = malloc(16);
 		list_add(l, data_2[i]);

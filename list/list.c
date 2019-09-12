@@ -54,9 +54,7 @@ void list_del(struct list *l, struct node *it, void (*deallocator)(void*))
 		l->tail = it;
 
 	it->next = it->next->next;
-	if (deallocator)
-		deallocator(target->data);
-	free(target);
+	node_free(target, deallocator);
 
 	--l->size;
 }
@@ -79,6 +77,14 @@ struct node *list_next(const struct node* n)
 void *list_iterator_value(const struct node *n)
 {
 	return n->next->data;
+}
+
+struct node *list_iterator_jump(struct node *it, unsigned long steps)
+{
+	for (int i = 0; i < steps; ++i)
+		it = list_next(it);
+
+	return it;
 }
 
 /* NODE  IMPLEMENTATION */
