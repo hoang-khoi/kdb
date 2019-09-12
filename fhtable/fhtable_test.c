@@ -20,6 +20,9 @@ void test_general_functionalities()
 {
 	struct fhtable *ht = fhtable_new(8, 0.75, hash);
 
+	// Test fhtable_is_empty()
+	assert(fhtable_is_empty(ht));
+
 	// Testing public getters
 	assert(8 == fhtable_capacity(ht));
 	assert(0 == fhtable_size(ht));
@@ -92,7 +95,6 @@ void test_fhtable_move()
 	assert(string_equals(fhtable_get(dest, "8. Key 2"), "Value 2"));
 	assert(string_equals(fhtable_get(dest, "9. Key 1"), "Value 3"));
 	assert(string_equals(fhtable_get(dest, "9. Key 2"), "Value 4"));
-
 
 	fhtable_free(src);
 	fhtable_free(dest);

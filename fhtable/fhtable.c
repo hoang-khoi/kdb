@@ -101,7 +101,7 @@ unsigned long fhtable_move(struct fhtable *dest, struct fhtable *src,
 	return entries_moved;
 }
 
-void fhtable_dump(const struct fhtable *ht, int level)
+void fhtable_dump(const struct fhtable *ht, unsigned long level)
 {
 	if (!ht) {
 		formatter_indent(level);
