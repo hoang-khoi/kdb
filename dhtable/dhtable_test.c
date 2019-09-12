@@ -17,20 +17,6 @@ unsigned long hash(const char *str)
 	return *str - '0';
 }
 
-void test_general()
-{
-	struct dhtable *ht = dhtable_new(4, 0.75, hash);
-
-	// Test internal data
-	assert(hash == ht->hash_func);
-	assert(0.75 == ht->load_factor);
-	assert(0 == dhtable_size(ht));
-	assert(ht->primary);
-	assert(!ht->secondary);
-
-	dhtable_free(ht);
-}
-
 void test_set()
 {
 	struct dhtable *ht = dhtable_new(4, 0.75, hash);
@@ -73,6 +59,9 @@ void test_set()
 	// Expect migration index is reset
 	assert(0 == ht->migration_idx);
 
+	// Test dhtable_size()
+	assert(5 == dhtable_size(ht));
+
 	dhtable_free(ht);
 }
 
@@ -103,12 +92,14 @@ void test_get()
 	assert(string_equals(dhtable_get(ht, "1. Key"), "Value 3"));
 	assert(string_equals(dhtable_get(ht, "6. Key"), "Value 4"));
 
+	// Check the size
+	assert(4 == dhtable_size(ht));
+
 	dhtable_free(ht);
 }
 
 int main()
 {
-	test_general();
 	test_set();
 	test_get();
 }
