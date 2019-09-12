@@ -1,4 +1,5 @@
 #include "dhtable.h"
+
 #include "../formatter/formatter.h"
 
 #include <stdlib.h>
@@ -6,15 +7,25 @@
 
 #define DHTABLE_GROWTH_FACTOR 2
 
-/* Private APIs */
-
+/*
+ * Sets key-value record to secondary fhtable, then migrate the data
+ * internally.
+ * This should be called if secondary is present.
+ */
 void _dhtable_set_secondary(struct dhtable *ht, const char *key,
 			    const char *value);
+/*
+ * Sets key-value record to primary. This is called when secondary fhtable
+ * is not initialized.
+ */
 void _dhtable_set_primary(struct dhtable *ht, const char *key,
 			  const char *value);
+/*
+ * Initializes secondary fhtable with double capacity from primary.
+ */
 void _dhtable_init_secondary(struct dhtable *ht);
 /*
- * Move a chain from primary to secondary.
+ * Migrates data by moving a chain from primary to secondary.
  */
 void _dhtable_migrate(struct dhtable *ht);
 
@@ -76,7 +87,7 @@ unsigned long dhtable_size(const struct dhtable* ht)
 	return size;
 }
 
-void dhtable_dump(const struct dhtable *ht, int level)
+void dhtable_dump(const struct dhtable *ht, unsigned long level)
 {
 	printf("Dynamic Hash Table {\n");
 
