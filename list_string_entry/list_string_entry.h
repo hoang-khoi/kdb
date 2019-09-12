@@ -18,7 +18,6 @@ struct entry *list_string_entry_find(const struct list *l, const char *key);
  * Deletes an entry from the list given its key.
  */
 void list_string_entry_del(struct list *l, const char *key);
-
 /*
  * Dumps a list of string entries to stdout for debugging.
  */

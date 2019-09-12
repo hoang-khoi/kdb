@@ -21,7 +21,7 @@ int main()
 	list_add(l, string_entry_new("Age", "24"));
 	list_add(l, string_entry_new("Title", "Memelord"));
 
-	// Expect to found entry with key: Name
+	// Expect to find an entry with key "Name"
 	tmp_entry = list_string_entry_find(l, "Name");
 	assert(string_entry_key_equals(tmp_entry, "Name"));
 

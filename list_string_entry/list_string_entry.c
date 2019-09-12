@@ -7,9 +7,8 @@
 /*
  * Given a key, return the desired list's iterator.
  */
-static struct node *list_string_entry_find_iterator(const struct list *l,
-						    const char *key);
-
+static struct node *_list_string_entry_find_iterator(const struct list *l,
+						     const char *key);
 
 /******************************************************************************/
 
@@ -20,7 +19,7 @@ void list_string_entry_free(struct list *l)
 
 struct entry *list_string_entry_find(const struct list *l, const char *key)
 {
-	struct node *it = list_string_entry_find_iterator(l, key);
+	struct node *it = _list_string_entry_find_iterator(l, key);
 
 	if (!it)
 		return NULL;
@@ -30,7 +29,7 @@ struct entry *list_string_entry_find(const struct list *l, const char *key)
 
 void list_string_entry_del(struct list *l, const char *key)
 {
-	struct node *it = list_string_entry_find_iterator(l, key);
+	struct node *it = _list_string_entry_find_iterator(l, key);
 
 	if (!it)
 		return;
@@ -64,7 +63,7 @@ void list_string_entry_dump(const struct list *l, int level)
 
 /******************************************************************************/
 
-static struct node *list_string_entry_find_iterator(const struct list *l,
+static struct node *_list_string_entry_find_iterator(const struct list *l,
 						    const char *key)
 {
 	struct node *it = list_begin(l);
