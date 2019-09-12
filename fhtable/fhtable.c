@@ -1,12 +1,12 @@
 #include "fhtable.h"
+
 #include "../formatter/formatter.h"
 
 #include <stdlib.h>
 #include <stdio.h>
 
-/* Private APIs */
-
 /*
+ * Add a new key-value entry into fhtable.
  * NOTE: Any new data adding operations MUST be done by this function.
  */
 void _fhtable_add_entry(struct fhtable *ht, struct entry *e);
