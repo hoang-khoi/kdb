@@ -1,4 +1,5 @@
 #include "string.h"
+
 #include "../formatter/formatter.h"
 
 #include <string.h>
