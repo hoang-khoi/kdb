@@ -1,7 +1,7 @@
 #include "list.h"
 #include <stdlib.h>
 
-/* NODE PROTOTYPES */
+/* Node's private prototypes */
 
 /*
  * Creates a new node.
@@ -12,7 +12,7 @@ struct node *node_new(void *data);
  */
 void node_free(struct node *n, void (*deallocator)(void*));
 
-/* LIST IMPLEMENTATION */
+/******************************************************************************/
 
 struct list *list_new()
 {
@@ -79,6 +79,8 @@ void *list_iterator_value(const struct node *n)
 	return n->next->data;
 }
 
+/******************************************************************************/
+
 struct node *list_iterator_jump(struct node *it, unsigned long steps)
 {
 	for (int i = 0; i < steps; ++i)
@@ -86,8 +88,6 @@ struct node *list_iterator_jump(struct node *it, unsigned long steps)
 
 	return it;
 }
-
-/* NODE  IMPLEMENTATION */
 
 struct node *node_new(void *data)
 {
