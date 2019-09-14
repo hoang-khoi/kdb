@@ -8,6 +8,9 @@
  * Specific APIs for list of entries.
  */
 
+/*
+ * Frees the list and all its elements
+ */
 void list_string_entry_free(struct list *l);
 /*
  * Given a key, searches and returns the entry that matches the provided key.
