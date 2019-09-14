@@ -4,7 +4,6 @@
 #include "../string/string.c"
 #include "../entry/entry.c"
 #include "../string_entry/string_entry.c"
-#include "../formatter/formatter.c"
 
 #include <assert.h>
 

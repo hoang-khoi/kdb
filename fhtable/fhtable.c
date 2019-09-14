@@ -1,9 +1,5 @@
 #include "fhtable.h"
-
-#include "../formatter/formatter.h"
-
 #include <stdlib.h>
-#include <stdio.h>
 
 /*
  * Add a new key-value entry into fhtable.
@@ -99,44 +95,6 @@ unsigned long fhtable_move(struct fhtable *dest, struct fhtable *src,
 	src->size -= entries_moved;
 
 	return entries_moved;
-}
-
-void fhtable_dump(const struct fhtable *ht, unsigned long level)
-{
-	if (!ht) {
-		formatter_indent(level);
-		printf("NULL\n");
-
-		return;
-	}
-
-	formatter_indent(level);
-	printf("Fixed Hash Table: {\n");
-
-	formatter_indent(level + 1);
-	printf("Limit: %lu\n", ht->limit);
-
-	formatter_indent(level + 1);
-	printf("Capacity: %lu\n", ht->capacity);
-
-	formatter_indent(level + 1);
-	printf("Size: %lu\n", ht->size);
-
-	formatter_indent(level + 1);
-	printf("slots: {\n");
-
-	for (unsigned long i = 0; i < ht->capacity; ++i) {
-		formatter_indent(level + 2);
-		printf("Index: %lu\n", i);
-
-		list_string_entry_dump(ht->slots[i], level +  2);
-	}
-
-	formatter_indent(level + 1);
-	printf("}\n");
-
-	formatter_indent(level);
-	printf("}\n");
 }
 
 /******************************************************************************/

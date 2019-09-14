@@ -1,6 +1,5 @@
 #include "hash.c"
 #include <assert.h>
-#include <stdio.h>
 
 int main()
 {

@@ -41,9 +41,5 @@ struct string *dhtable_get(struct dhtable *ht, const char *key);
  * Gets the number of records in hash table.
  */
 unsigned long dhtable_size(const struct dhtable* ht);
-/*
- * Print dhtable to stdout for debugging purpose.
- */
-void dhtable_dump(const struct dhtable *ht, unsigned long level);
 
 #endif

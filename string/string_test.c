@@ -1,6 +1,4 @@
 #include "string.c"
-#include "../formatter/formatter.c"
-
 #include <assert.h>
 
 unsigned long hash(const char *s)

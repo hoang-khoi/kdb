@@ -1,9 +1,5 @@
 #include "dhtable.h"
-
-#include "../formatter/formatter.h"
-
 #include <stdlib.h>
-#include <stdio.h>
 
 #define DHTABLE_GROWTH_FACTOR 2
 
@@ -85,28 +81,6 @@ unsigned long dhtable_size(const struct dhtable* ht)
 		size += fhtable_size(ht->secondary);
 
 	return size;
-}
-
-void dhtable_dump(const struct dhtable *ht, unsigned long level)
-{
-	printf("Dynamic Hash Table {\n");
-
-
-	formatter_indent(level + 1);
-	printf("Load Factor: %f\n", ht->load_factor);
-
-	formatter_indent(level + 1);
-	printf("Primary:\n");
-	fhtable_dump(ht->primary, level + 2);
-
-	formatter_indent(level + 1);
-	printf("Secondary:\n");
-	fhtable_dump(ht->secondary, level + 2);
-
-	formatter_indent(level + 1);
-	printf("Migration Index: %lu\n", ht->migration_idx);
-
-	printf("}\n");
 }
 
 /******************************************************************************/

@@ -5,7 +5,6 @@
 #include "../list_string_entry/list_string_entry.c"
 #include "../string_entry/string_entry.c"
 #include "../entry/entry.c"
-#include "../formatter/formatter.c"
 #include "../string/string.c"
 
 #include <assert.h>

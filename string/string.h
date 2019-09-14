@@ -35,9 +35,5 @@ int string_equals(const struct string *s, const char *buffer);
  */
 unsigned long string_hash(const struct string *s,
 			  unsigned long (*hash_func)(const char*));
-/*
- * Dumps string to stdout for debugging.
- */
-void string_dump(const struct string *s, int level);
 
 #endif
