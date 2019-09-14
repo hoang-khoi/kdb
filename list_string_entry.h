@@ -1,8 +1,8 @@
 #ifndef LIST_STRING_ENTRY
 #define LIST_STRING_ENTRY
 
-#include "../list/list.h"
-#include "../string_entry/string_entry.h"
+#include "list.h"
+#include "string_entry.h"
 
 /*
  * Specific APIs for list of entries.

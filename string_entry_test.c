@@ -1,6 +1,6 @@
 #include "string_entry.c"
-#include "../string/string.c"
-#include "../entry/entry.c"
+#include "string.c"
+#include "entry.c"
 
 #include <assert.h>
 #include <string.h>

@@ -1,7 +1,7 @@
 #ifndef FHTABLE_H
 #define FHTABLE_H
 
-#include "../list_string_entry/list_string_entry.h"
+#include "list_string_entry.h"
 
 /*
  * Fixed hash table.

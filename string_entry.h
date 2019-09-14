@@ -1,8 +1,8 @@
 #ifndef STRING_ENTRY_H
 #define STRING_ENTRY_H
 
-#include "../string/string.h"
-#include "../entry/entry.h"
+#include "string.h"
+#include "entry.h"
 
 /*
  * Specific APIs for string key-value entries.

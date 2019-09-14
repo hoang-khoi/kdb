@@ -1,10 +1,10 @@
 #include "fhtable.c"
 
-#include "../list/list.c"
-#include "../string/string.c"
-#include "../entry/entry.c"
-#include "../string_entry/string_entry.c"
-#include "../list_string_entry/list_string_entry.c"
+#include "list.c"
+#include "string.c"
+#include "entry.c"
+#include "string_entry.c"
+#include "list_string_entry.c"
 
 #include <assert.h>
 

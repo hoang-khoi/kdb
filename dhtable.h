@@ -6,7 +6,7 @@
  * seamlessly as the data grows.
  */
 
-#include "../fhtable/fhtable.h"
+#include "fhtable.h"
 
 struct dhtable {
 	unsigned long (*hash_func)(const char*);
