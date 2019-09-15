@@ -8,6 +8,8 @@
 #define HASH_ALGORITHM sdbm
 #define LOAD_FACTOR 0.75
 #define INIT_CAPACITY 8
+#define REPORT_FILE_SET "report_set.txt"
+#define REPORT_FILE_GET "report_get.txt"
 
 /*
  * Simple wrapper over dhtable_set(), but clock_t will be
@@ -25,10 +27,9 @@ static unsigned long get(struct dhtable *ht, const char *key);
 
 int main(int argc, char **argv)
 {
-	FILE *fdata;
+	FILE *fdata, *fset, *fget;
 	struct dhtable *ht;
 	char buffer[256];
-	unsigned long counter;
 
 	if (argc < 2) {
 		fprintf(stderr, "Required data file.\n");
@@ -36,31 +37,31 @@ int main(int argc, char **argv)
 	}
 
 	fdata = fopen(argv[1], "r");
+	fget = fopen(REPORT_FILE_GET, "w");
+	fset = fopen(REPORT_FILE_SET, "w");
 
-	if (!fdata) {
-		fprintf(stderr, "Cannot open file.\n");
+	if (!fdata || !fget || !fget) {
+		fprintf(stderr, "Cannot open files.\n");
 		return 1;
 	}
 
 	ht = dhtable_new(INIT_CAPACITY, LOAD_FACTOR, HASH_ALGORITHM);
-	counter = 0;
 
-	while (fscanf(fdata, "%s", buffer) != EOF) {
-		++counter;
-		printf("%lu %lu %s\n", counter, set(ht, buffer, buffer), buffer);
-	}
+	while (fscanf(fdata, "%s", buffer) != EOF)
+		fprintf(fset, "%lu\n", set(ht, buffer, buffer));
 
 	rewind(fdata);
-	counter = 0;
-	printf("\n");
 
-	while (fscanf(fdata, "%s", buffer) != EOF) {
-		++counter;
-		printf("%lu %lu %s\n", counter, get(ht, buffer), buffer);
-	}
+	while (fscanf(fdata, "%s", buffer) != EOF)
+		fprintf(fget, "%lu\n", get(ht, buffer));
 
 	dhtable_free(ht);
+
 	fclose(fdata);
+	fclose(fget);
+	fclose(fset);
+
+	puts("Done");
 }
 
 /******************************************************************************/
