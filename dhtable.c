@@ -136,7 +136,11 @@ void _dhtable_init_secondary(struct dhtable *ht)
 
 void _dhtable_migrate(struct dhtable *ht)
 {
-	fhtable_move(ht->secondary, ht->primary, ht->migration_idx++);
+	unsigned long moved_data = 0;
+	do {
+		moved_data = fhtable_move(ht->secondary, ht->primary,
+					  ht->migration_idx++);
+	} while (moved_data == 0);
 
 	if (fhtable_is_empty(ht->primary)) {
 		ht->migration_idx = 0;
