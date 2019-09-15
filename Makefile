@@ -1,14 +1,14 @@
 CFLAGS=-c -Wall -Wextra -Werror -Wfatal-errors -O2 -std=gnu99
-MODULES=dhtable entry fhtable hash list list_string_entry string string_entry\
-	helper benchmark
-OBJS=$(MODULES:=.o)
+
+SOURCES := $(wildcard *.c)
+OBJECTS := $(patsubst %.c, %.o, $(SOURCES))
 
 benchmark: objects
-	$(CC) $(OBJS) -o benchmark
+	$(CC) $(OBJECTS) -o benchmark
 %.o: %.c
 	$(CC) $(CFLAGS) $<
 
-objects: $(OBJS)
+objects: $(OBJECTS)
 
 clean:
 	rm -f *.o benchmark
