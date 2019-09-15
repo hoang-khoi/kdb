@@ -1,4 +1,4 @@
-#include "list.c"
+#include "../list.c"
 #include <assert.h>
 
 void test_add()
@@ -17,7 +17,7 @@ void test_add()
 	// Testing its elements
 	struct node *it = list_begin(l);
 
-	for (int i = 0; i < list_size(l); ++i) {
+	for (unsigned long i = 0; i < list_size(l); ++i) {
 		assert(data[i] == list_iterator_value(it));
 		it = list_next(it);
 	}
@@ -54,7 +54,7 @@ void test_del()
 
 	// Test content
 	struct node *it = list_begin(l);
-	for (int i = 0; i < list_size(l); ++i) {
+	for (unsigned long i = 0; i < list_size(l); ++i) {
 		if (i == 0)
 			assert(data[1] == list_iterator_value(it));
 		else

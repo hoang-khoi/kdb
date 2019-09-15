@@ -1,11 +1,11 @@
-#include "fhtable.c"
+#include "../fhtable.c"
 
-#include "list.c"
-#include "string.c"
-#include "entry.c"
-#include "string_entry.c"
-#include "list_string_entry.c"
-#include "helper.c"
+#include "../list.c"
+#include "../string.c"
+#include "../entry.c"
+#include "../string_entry.c"
+#include "../list_string_entry.c"
+#include "../helper.c"
 
 #include <assert.h>
 

@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 
-modules="string entry list hash string_entry list_string_entry fhtable dhtable"
+modules=*.c
 
 function test_module() {
-	cc -g $1_test.c -o /tmp/kdb_test &&\
+	cc -g $1 -o /tmp/kdb_test &&\
 		valgrind --leak-check=full --error-exitcode=1 /tmp/kdb_test
 }
 

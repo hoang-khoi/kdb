@@ -1,17 +1,12 @@
-#include "list_string_entry.c"
+#include "../list_string_entry.c"
 
-#include "list.c"
-#include "string.c"
-#include "entry.c"
-#include "string_entry.c"
-#include "helper.c"
+#include "../list.c"
+#include "../string.c"
+#include "../entry.c"
+#include "../string_entry.c"
+#include "../helper.c"
 
 #include <assert.h>
-
-unsigned long hash(const char *s)
-{
-	return 64;
-}
 
 int main()
 {

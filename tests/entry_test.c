@@ -1,4 +1,4 @@
-#include "entry.c"
+#include "../entry.c"
 
 #include <assert.h>
 #include <string.h>

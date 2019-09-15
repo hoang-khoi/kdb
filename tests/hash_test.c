@@ -1,4 +1,4 @@
-#include "hash.c"
+#include "../hash.c"
 #include <assert.h>
 
 int main()

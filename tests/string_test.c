@@ -1,5 +1,5 @@
-#include "string.c"
-#include "helper.c"
+#include "../string.c"
+#include "../helper.c"
 
 #include <assert.h>
 
