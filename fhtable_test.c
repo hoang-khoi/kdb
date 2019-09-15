@@ -5,6 +5,7 @@
 #include "entry.c"
 #include "string_entry.c"
 #include "list_string_entry.c"
+#include "helper.c"
 
 #include <assert.h>
 

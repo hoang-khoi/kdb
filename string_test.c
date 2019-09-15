@@ -1,4 +1,6 @@
 #include "string.c"
+#include "helper.c"
+
 #include <assert.h>
 
 unsigned long hash(const char *s)

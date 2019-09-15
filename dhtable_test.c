@@ -6,6 +6,7 @@
 #include "string_entry.c"
 #include "entry.c"
 #include "string.c"
+#include "helper.c"
 
 #include <assert.h>
 

@@ -66,5 +66,9 @@ char fhtable_is_empty(const struct fhtable *ht);
  */
 unsigned long fhtable_move(struct fhtable *dest, struct fhtable *src,
 			   unsigned long slot_idx);
+/*
+ * Dumps the hash table to stdout for debugging purpose.
+ */
+void fhtable_dump(const struct fhtable *ht, unsigned long level);
 
 #endif

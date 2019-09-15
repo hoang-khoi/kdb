@@ -25,5 +25,9 @@ int string_entry_key_equals(const struct entry *e, const char *buffer);
  */
 unsigned long string_entry_hash(const struct entry *e,
 				unsigned long (*hash_func)(const char*));
+/*
+ * Dumps string entry to stdout for debugging.
+ */
+void string_entry_dump(const struct entry *e, int level);
 
 #endif

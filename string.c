@@ -1,7 +1,9 @@
 #include "string.h"
+#include "helper.h"
 
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 struct string *string_new(const char *buffer)
 {
@@ -41,4 +43,10 @@ unsigned long string_hash(const struct string *s,
 			  unsigned long (*hash_func)(const char*))
 {
 	return hash_func(s->buffer);
+}
+
+void string_dump(const struct string *s, int level)
+{
+	indent(level);
+	printf("String: {Length: %lu, Content: '%s'}\n", s->length, s->buffer);
 }

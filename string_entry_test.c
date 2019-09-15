@@ -1,6 +1,7 @@
 #include "string_entry.c"
 #include "string.c"
 #include "entry.c"
+#include "helper.c"
 
 #include <assert.h>
 #include <string.h>
