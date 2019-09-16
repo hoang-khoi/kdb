@@ -83,7 +83,9 @@ void *list_iterator_value(const struct node *n)
 
 struct node *list_iterator_jump(struct node *it, unsigned long steps)
 {
-	for (unsigned long i = 0; i < steps; ++i)
+	unsigned long i;
+
+	for (i = 0; i < steps; ++i)
 		it = list_next(it);
 
 	return it;

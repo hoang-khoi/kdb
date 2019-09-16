@@ -18,11 +18,10 @@ int main()
 	assert(string_equals(entry_get_key(e), "3.Name"));
 	assert(string_equals(entry_get_value(e), "Khoi"));
 
-	// Test string_entry_key_equals()
 	assert(string_entry_key_equals(e, "3.Name"));
-
-	// Test string_entry_hash()
 	assert(3 == string_entry_hash(e, hash_func));
 
 	string_entry_free(e);
+
+	return 0;
 }

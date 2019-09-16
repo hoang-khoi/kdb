@@ -1,4 +1,4 @@
-CFLAGS=-c -Wall -Wextra -Werror -Wfatal-errors -O2 -std=gnu99
+CFLAGS=-c -Wall -Wextra -Werror -Wfatal-errors -ansi -pedantic -O2
 
 SOURCES=$(wildcard *.c)
 OBJECTS=$(patsubst %.c, %.o, $(SOURCES))

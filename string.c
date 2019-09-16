@@ -15,8 +15,10 @@ struct string *string_new(const char *buffer)
 	return s;
 }
 
-void string_free(struct string *str)
+void string_free(void *ptr)
 {
+	struct string *str = ptr;
+
 	if (!str)
 		return;
 

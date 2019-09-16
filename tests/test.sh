@@ -4,8 +4,9 @@ set -e
 modules=*.c
 
 function test_module() {
-	cc -g $1 -o /tmp/kdb_test &&\
-		valgrind --leak-check=full --error-exitcode=1 /tmp/kdb_test
+	cc -ansi -pedantic -Wall -Wextra -Werror -Wfatal-errors -g\
+	$1 -o /tmp/kdb_test &&\
+	valgrind --leak-check=full --error-exitcode=1 /tmp/kdb_test
 }
 
 if [ $# -gt 0 ]; then

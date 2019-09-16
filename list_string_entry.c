@@ -39,6 +39,8 @@ void list_string_entry_del(struct list *l, const char *key)
 
 void list_string_entry_dump(const struct list *l, int level)
 {
+	struct node *it;
+
 	indent(level);
 	printf("List: {\n");
 
@@ -48,7 +50,7 @@ void list_string_entry_dump(const struct list *l, int level)
 	indent(level + 1);
 	printf("Data: {\n");
 
-	struct node *it = list_begin(l);
+	it = list_begin(l);
 	while (list_next(it)) {
 		string_entry_dump(list_iterator_value(it), level + 2);
 		it = list_next(it);

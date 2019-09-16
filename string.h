@@ -17,7 +17,7 @@ struct string *string_new(const char *buffer);
 /*
  * Release string's memory.
  */
-void string_free(struct string *str);
+void string_free(void *ptr);
 /*
  * Returns C-style string buffer.
  */

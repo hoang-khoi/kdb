@@ -4,20 +4,20 @@
 void test_add()
 {
 	struct list *l = list_new();
+	struct node *it;
 	void *data[3];
+	unsigned long i;
 
-	for (int i = 0; i < 3; ++i) {
+	for (i = 0; i < 3; ++i) {
 		data[i] = malloc(16);
 		list_add(l, data[i]);
 	}
 
-	// Test list's size
 	assert(3 == list_size(l));
 
-	// Testing its elements
-	struct node *it = list_begin(l);
+	it = list_begin(l);
 
-	for (unsigned long i = 0; i < list_size(l); ++i) {
+	for (i = 0; i < list_size(l); ++i) {
 		assert(data[i] == list_iterator_value(it));
 		it = list_next(it);
 	}
@@ -30,31 +30,29 @@ void test_del()
 {
 	struct list *l = list_new();
 	void *data[3], *data_2[3];
+	struct node *begin, *end, *it;
+	unsigned long i;
 
-	for (int i = 0; i < 3; ++i) {
+	for (i = 0; i < 3; ++i) {
 		data[i] = malloc(16);
 		list_add(l, data[i]);
 	}
 
-	// Delete first and last
-	struct node *begin = list_begin(l);
-	struct node *end = list_iterator_jump(begin, 2);
+	begin = list_begin(l);
+	end = list_iterator_jump(begin, 2);
 
 	list_del(l, begin, free);
 	list_del(l, end, free);
 
-	// Add something after deletion
-	for (int i = 0; i < 3; ++i) {
+	for (i = 0; i < 3; ++i) {
 		data_2[i] = malloc(16);
 		list_add(l, data_2[i]);
 	}
 
-	// Test list's size
 	assert(4 == list_size(l));
 
-	// Test content
-	struct node *it = list_begin(l);
-	for (unsigned long i = 0; i < list_size(l); ++i) {
+	it = list_begin(l);
+	for (i = 0; i < list_size(l); ++i) {
 		if (i == 0)
 			assert(data[1] == list_iterator_value(it));
 		else
@@ -70,4 +68,6 @@ int main()
 {
 	test_add();
 	test_del();
+
+	return 0;
 }

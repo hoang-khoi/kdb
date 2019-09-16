@@ -17,6 +17,7 @@ struct fhtable *fhtable_new(unsigned long capacity,
 			    unsigned long (*hash_func)(const char*))
 {
 	struct fhtable *ht = malloc(sizeof(struct fhtable));
+	unsigned long i;
 
 	ht->hash_func = hash_func;
 	ht->capacity = capacity;
@@ -24,7 +25,7 @@ struct fhtable *fhtable_new(unsigned long capacity,
 	ht->size = 0;
 
 	ht->slots = malloc(ht->capacity * sizeof(void*));
-	for (unsigned long i = 0; i < ht->capacity; ++i)
+	for (i = 0; i < ht->capacity; ++i)
 		ht->slots[i] = list_new();
 
 	return ht;
@@ -32,10 +33,12 @@ struct fhtable *fhtable_new(unsigned long capacity,
 
 void fhtable_free(struct fhtable *ht)
 {
+	unsigned long i;
+
 	if (!ht)
 		return;
 
-	for (unsigned long i = 0; i < ht->capacity; ++i)
+	for (i = 0; i < ht->capacity; ++i)
 		list_string_entry_free(ht->slots[i]);
 
 	free(ht->slots);
@@ -46,10 +49,12 @@ char fhtable_set(struct fhtable *ht,
 		 const char *key,
 		 const char *value)
 {
+	struct entry *e;
+
 	if (ht->size >= ht->limit)
 		return 0;
 
-	struct entry *e = string_entry_new(key, value);
+	e = string_entry_new(key, value);
 	_fhtable_add_entry(ht, e);
 	return 1;
 }
@@ -102,6 +107,8 @@ unsigned long fhtable_move(struct fhtable *dest, struct fhtable *src,
 
 void fhtable_dump(const struct fhtable *ht, unsigned long level)
 {
+	unsigned long i;
+
 	if (!ht) {
 		indent(level);
 		printf("NULL\n");
@@ -124,7 +131,7 @@ void fhtable_dump(const struct fhtable *ht, unsigned long level)
 	indent(level + 1);
 	printf("slots: {\n");
 
-	for (unsigned long i = 0; i < ht->capacity; ++i) {
+	for (i = 0; i < ht->capacity; ++i) {
 		indent(level + 2);
 		printf("Index: %lu\n", i);
 

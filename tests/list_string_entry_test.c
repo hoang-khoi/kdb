@@ -17,24 +17,20 @@ int main()
 	list_add(l, string_entry_new("Age", "24"));
 	list_add(l, string_entry_new("Title", "Memelord"));
 
-	// Expect to find an entry with key "Name"
 	tmp_entry = list_string_entry_find(l, "Name");
 	assert(string_entry_key_equals(tmp_entry, "Name"));
 
-	// Do not expect to found entry with key: age
 	tmp_entry = list_string_entry_find(l, "age");
 	assert(!tmp_entry);
 
-	// Deletes an existing entry
 	list_string_entry_del(l, "Name");
 	tmp_entry = list_string_entry_find(l, "Name");
 	assert(!tmp_entry);
 
-	// Attempt to delete an entry that does not exist
 	list_string_entry_del(l, "age");
-
-	// Check the size
 	assert(2 == list_size(l));
 
 	list_string_entry_free(l);
+
+	return 0;
 }

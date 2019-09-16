@@ -10,7 +10,7 @@ struct entry *string_entry_new(const char *key, const char *value)
 
 void string_entry_free(void *e)
 {
-	entry_free(e, (void*) string_free);
+	entry_free(e, string_free);
 }
 
 int string_entry_key_equals(const struct entry *e, const char *buffer)
