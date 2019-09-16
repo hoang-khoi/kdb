@@ -5,9 +5,9 @@
 #include <time.h>
 #include <assert.h>
 
-#define HASH_ALGORITHM sdbm
+#define HASH_ALGORITHM djb2
 #define LOAD_FACTOR 0.75
-#define INIT_CAPACITY 8
+#define INIT_CAPACITY 128
 #define REPORT_FILE_SET "report_set.txt"
 #define REPORT_FILE_GET "report_get.txt"
 
