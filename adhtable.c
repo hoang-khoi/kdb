@@ -1,4 +1,4 @@
-#include "dhtable.h"
+#include "adhtable.h"
 #include "helper.h"
 
 #include <stdlib.h>
@@ -11,30 +11,30 @@
  * internally.
  * This should be called if secondary is present.
  */
-void _dhtable_set_secondary(struct dhtable *ht, const char *key,
+void _adhtable_set_secondary(struct adhtable *ht, const char *key,
 			    const char *value);
 /*
  * Sets key-value record to primary. This is called when secondary fhtable
  * is not initialized.
  */
-void _dhtable_set_primary(struct dhtable *ht, const char *key,
+void _adhtable_set_primary(struct adhtable *ht, const char *key,
 			  const char *value);
 /*
  * Initializes secondary fhtable with double capacity from primary.
  */
-void _dhtable_init_secondary(struct dhtable *ht);
+void _adhtable_init_secondary(struct adhtable *ht);
 /*
  * Migrates data by moving a chain from primary to secondary.
  */
-void _dhtable_migrate(struct dhtable *ht);
+void _adhtable_migrate(struct adhtable *ht);
 
 /******************************************************************************/
 
-struct dhtable *dhtable_new(unsigned long capacity,
+struct adhtable *adhtable_new(unsigned long capacity,
 			    double load_factor,
 			    unsigned long (*hash_func)(const char*))
 {
-	struct dhtable *ht = malloc(sizeof(struct dhtable));
+	struct adhtable *ht = malloc(sizeof(struct adhtable));
 	ht->hash_func = hash_func;
 	ht->load_factor = load_factor;
 	ht->primary = fhtable_new(capacity, load_factor, hash_func);
@@ -45,7 +45,7 @@ struct dhtable *dhtable_new(unsigned long capacity,
 	return ht;
 }
 
-void dhtable_free(struct dhtable *ht)
+void adhtable_free(struct adhtable *ht)
 {
 	if (!ht)
 		return;
@@ -56,27 +56,27 @@ void dhtable_free(struct dhtable *ht)
 	free(ht);
 }
 
-void dhtable_set(struct dhtable *ht, const char *key, const char *value)
+void adhtable_set(struct adhtable *ht, const char *key, const char *value)
 {
 	if (ht->secondary)
-		_dhtable_set_secondary(ht, key, value);
+		_adhtable_set_secondary(ht, key, value);
 	else
-		_dhtable_set_primary(ht, key, value);
+		_adhtable_set_primary(ht, key, value);
 }
 
-struct string *dhtable_get(struct dhtable *ht, const char *key)
+struct string *adhtable_get(struct adhtable *ht, const char *key)
 {
 	struct string *result = fhtable_get(ht->primary, key);
 
 	if (!result && ht->secondary) {
 		result = fhtable_get(ht->secondary, key);
-		_dhtable_migrate(ht);
+		_adhtable_migrate(ht);
 	}
 
 	return result;
 }
 
-unsigned long dhtable_size(const struct dhtable* ht)
+unsigned long adhtable_size(const struct adhtable* ht)
 {
 	unsigned long size = fhtable_size(ht->primary);
 
@@ -86,7 +86,7 @@ unsigned long dhtable_size(const struct dhtable* ht)
 	return size;
 }
 
-void dhtable_dump(const struct dhtable *ht, unsigned long level)
+void adhtable_dump(const struct adhtable *ht, unsigned long level)
 {
 	printf("Dynamic Hash Table {\n");
 
@@ -110,23 +110,23 @@ void dhtable_dump(const struct dhtable *ht, unsigned long level)
 
 /******************************************************************************/
 
-void _dhtable_set_secondary(struct dhtable *ht, const char *key,
+void _adhtable_set_secondary(struct adhtable *ht, const char *key,
 			    const char *value)
 {
 	fhtable_set(ht->secondary, key, value);
-	_dhtable_migrate(ht);
+	_adhtable_migrate(ht);
 }
 
-void _dhtable_set_primary(struct dhtable *ht, const char *key,
+void _adhtable_set_primary(struct adhtable *ht, const char *key,
 			  const char *value)
 {
 	if (!fhtable_set(ht->primary, key, value)) {
-		_dhtable_init_secondary(ht);
-		_dhtable_set_secondary(ht, key, value);
+		_adhtable_init_secondary(ht);
+		_adhtable_set_secondary(ht, key, value);
 	}
 }
 
-void _dhtable_init_secondary(struct dhtable *ht)
+void _adhtable_init_secondary(struct adhtable *ht)
 {
 	unsigned long pri_cap = fhtable_capacity(ht->primary);
 	unsigned long sec_cap = pri_cap * DHTABLE_GROWTH_FACTOR;
@@ -134,7 +134,7 @@ void _dhtable_init_secondary(struct dhtable *ht)
 	ht->secondary = fhtable_new(sec_cap, ht->load_factor, ht->hash_func);
 }
 
-void _dhtable_migrate(struct dhtable *ht)
+void _adhtable_migrate(struct adhtable *ht)
 {
 	unsigned long moved_data = 0;
 	do {
