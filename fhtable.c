@@ -13,7 +13,7 @@ void _fhtable_add_entry(struct fhtable *ht, struct entry *e);
 /******************************************************************************/
 
 struct fhtable *fhtable_new(unsigned long capacity,
-			    double load_ratio,
+			    double load_factor,
 			    unsigned long (*hash_func)(const char*))
 {
 	struct fhtable *ht = malloc(sizeof(struct fhtable));
@@ -21,7 +21,7 @@ struct fhtable *fhtable_new(unsigned long capacity,
 
 	ht->hash_func = hash_func;
 	ht->capacity = capacity;
-	ht->limit = load_ratio * ht->capacity;
+	ht->limit = load_factor * ht->capacity;
 	ht->size = 0;
 
 	ht->slots = malloc(ht->capacity * sizeof(void*));

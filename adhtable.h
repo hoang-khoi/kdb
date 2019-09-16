@@ -22,11 +22,10 @@ struct adhtable {
 /*
  * Creates a new adhtable.
  */
-struct adhtable *adhtable_new(unsigned long capacity,
-			    double load_factor,
-			    unsigned long (*hash_func)(const char*));
+struct adhtable *adhtable_new(unsigned long capacity, double load_factor,
+			      unsigned long (*hash_func)(const char*));
 /*
- * Free adhtable from memory.
+ * Frees adhtable from memory.
  */
 void adhtable_free(struct adhtable *ht);
 /*
@@ -43,7 +42,7 @@ struct string *adhtable_get(struct adhtable *ht, const char *key);
  */
 unsigned long adhtable_size(const struct adhtable* ht);
 /*
- * Print adhtable to stdout for debugging purpose.
+ * Prints adhtable to stdout for debugging purpose.
  */
 void adhtable_dump(const struct adhtable *ht, unsigned long level);
 

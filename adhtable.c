@@ -88,7 +88,7 @@ unsigned long adhtable_size(const struct adhtable* ht)
 
 void adhtable_dump(const struct adhtable *ht, unsigned long level)
 {
-	printf("Dynamic Hash Table {\n");
+	printf("Advanced Dynamic Hash Table {\n");
 
 
 	indent(level + 1);

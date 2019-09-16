@@ -28,8 +28,7 @@ struct fhtable {
 /*
  * Creates a new fhtable.
  */
-struct fhtable *fhtable_new(unsigned long capacity,
-			    double load_ratio,
+struct fhtable *fhtable_new(unsigned long capacity, double load_factor,
 			    unsigned long (*hash_func)(const char*));
 /*
  * Releases fhtable's memory.
@@ -41,15 +40,13 @@ void fhtable_free(struct fhtable *ht);
  *
  * If 1 is returned, the record has not been added to the hash table.
  */
-char fhtable_set(struct fhtable *ht,
-		 const char *key,
-		 const char *value);
+char fhtable_set(struct fhtable *ht, const char *key, const char *value);
 /*
  * Given key, return the associated value, NULL if not found.
  */
 struct string *fhtable_get(const struct fhtable *ht, const char *key);
 /*
- * Returns fhtable's capacity.
+ * Returns fhtable's capacity (total amount of slots).
  */
 unsigned long fhtable_capacity(const struct fhtable *ht);
 /*
